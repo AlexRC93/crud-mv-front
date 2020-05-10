@@ -1,0 +1,67 @@
+<!-- Editable table -->
+<div class="card">
+  <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Profissionais</h3>
+  <div class="card-body">
+    <div id="table" class="table-editable">
+      <form>
+        <!-- Grid row -->
+        <div class="form-row">
+          <!-- Default input -->
+          <div class="form-group col-md-3">
+            <label for="nome">Nome</label>
+            <input [(ngModel)]="profissional.nome" [ngModelOptions]="{standalone:
+         true}"  mdbInput type="text"  class="form-control" id="nome" placeholder="Nome">
+          </div>
+          <!-- Default input -->
+          <div class="form-group col-md-3">
+            <label for="endereco">Endereço</label>
+            <input [(ngModel)]="profissional.endereco" [ngModelOptions]="{standalone:
+         true}" mdbInput type="text" class="form-control" id="endereco" placeholder="Endereço">
+          </div>
+          <div class="form-group col-md-3">
+            <label for="estabelecimento">Estabelecimento</label>
+            <select id="estabelecimento" class="browser-default custom-select" [(ngModel)]="idEstabelecimento" [ngModelOptions]="{standalone: true}">
+              <option value="0" selected>Selecione</option>
+              <option *ngFor="let estabelecimento of estabelecimentos" placeholder="Estabelecimento" [value]="estabelecimento.id">{{estabelecimento.nome}}</option>
+            </select>
+          </div>
+          <div class="form-group col-md-3">
+              <button style="margin-top: 25px; margin-left: 20px;" type="button" mdbBtn color="primary" (click)="salvarProfissional()">Salvar</button>
+          </div>
+          <div class="form-group col-md-6">
+            <li style="color: red;" *ngFor="let error of errors">{{error}}</li>
+          </div>
+        </div>
+        <!-- Grid row -->
+      </form>
+
+      <table class="table table-bordered table-responsive-md table-striped text-center">
+        <tr>
+          <th class="text-center">Nome</th>
+          <th class="text-center">Endereço</th>
+          <th class="text-center">Estabelecimento</th>
+          <th class="text-center">Ações</th>
+        </tr>
+        <tr *ngFor="let profissional of profissionais">
+          <td>
+            <span >{{profissional.nome}}</span>
+          </td>
+          <td>
+            <span >{{profissional.endereco}}</span>
+          </td>
+          <td>
+            <span >{{profissional.estabelecimento.nome}}</span>
+          </td>
+          <td>
+            <span class="table-edit">
+              <button (click)="editar(profissional)" type="button" mdbBtn color="warning" rounded="true" size="sm" class="my-0" >Editar</button>
+              <button (click)="deletar(profissional.id)" type="button" mdbBtn color="danger" rounded="true" size="sm" class="my-0" >Remover</button>
+            </span>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- Editable table -->
